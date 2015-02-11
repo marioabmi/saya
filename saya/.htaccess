@@ -1,0 +1,12 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /saya/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /saya/index.php/$1 [L]
+    ErrorDocument 404 /saya/index.php
+
+<ifModule mod_headers.c>
+    Header set Connection keep-alive
+</ifModule>
+
