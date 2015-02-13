@@ -45,6 +45,5 @@
 		<!-- JQUERY UI --> 
 		<script src="js/jquery-ui-1.10.4.custom.js"></script> 
 		<script src="js/jquery-ui-1.10.4.custom.min.js"></script> 
-
-</body>
+	</body> 
 </html>
