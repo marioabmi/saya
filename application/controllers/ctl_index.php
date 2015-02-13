@@ -19,8 +19,13 @@ class ctl_index extends CI_Controller {
 	 */
 	function index()
 	{
-		
-		$this->load->view('login_saya');	
+			if ( !isset($_SESSION['my_usuario']) )redirect( 'acceso', 'refresh' );
+		 $rol= $this->model_usuario->rol(); 
+           $data['usuario']=$_SESSION['my_usuario'];
+		$this->load->view('login_header');
+		$this->load->view('login_saya');
+		$this->load->view('login_footer');
+
 
 		
 	}
