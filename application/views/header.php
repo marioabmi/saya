@@ -8,7 +8,7 @@ if (isset($_SESSION['my_usuario']))
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>App_Solution</title>
+		<title>SAYA</title>
 		<meta name="description" content="description">
 		<meta name="author" content="App_Solution">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +53,7 @@ if (isset($_SESSION['my_usuario']))
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href=""></a>
+				<a href="">SAYA</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -71,7 +71,7 @@ if (isset($_SESSION['my_usuario']))
 									
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
-										<span class="welcome">Bienvenido,</span>
+										<span class="welcome">Bienvenido</span>
 										<span><?php echo(isset($usuario))?$usuario['usuario']:'' ?></span>
 									</div>
 								</a>
