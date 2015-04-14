@@ -12,9 +12,8 @@ if (isset($_SESSION['my_usuario']))
 		<meta name="description" content="description">
 		<meta name="author" content="App_Solution">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-			 <base href="<?php echo base_url();  ?>">
-			 <link href="<?php echo base_url().'seteo/js/devoops.js'; ?>" type="javascript" >
-			 <link href="<?php echo base_url().'seteo/js/devoops.min.js'; ?>" type="javascript">
+		<base href="<?php echo base_url();  ?>">
+	    <link href="<?php echo base_url().'seteo/js/devoops.min.js'; ?>" type="javascript">
 		<link href="<?php echo base_url().'seteo/plugins/bootstrap/bootstrap.css'; ?>" rel="stylesheet">
 		<link href="<?php echo base_url().'seteo/plugins/jquery-ui/jquery-ui.min.css'; ?>" rel="stylesheet">
 		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -53,7 +52,7 @@ if (isset($_SESSION['my_usuario']))
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="">SAYA</a>
+				<a href="ctl_index/principal">SAYA</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -99,64 +98,45 @@ if (isset($_SESSION['my_usuario']))
 		<div id="sidebar-left" class="col-xs-2 col-sm-2">
 			<ul class="nav main-menu">
 				<li>
-					<a href="ajax/dashboard.html" class="active ajax-link">
+					<a href="ctl_index/principal">
 						<i class="fa fa-dashboard"></i>
-						<span class="hidden-xs">Inicio</span>
+						<span class="hidden-xs">Home</span>
 					</a>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
-						<i class="fa fa-list"></i>
-						<span class="hidden-xs">Casos</span>
-					</a>
-					<ul class="dropdown-menu">
-					
-						<li><a  href="<?php echo base_url().'crud_caso'; ?>">Nuevo Caso</a></li>
-						<li><a href="<?php echo base_url().'crud_caso/responsable'; ?>">Casos Sin Responsable</a></li>
-						<li><a href="<?php echo base_url().'crud_caso/casos_con_responsable'; ?>">Casos en Proceso</a></li>
-						<li><a href="<?php echo base_url().'crud_caso/cerrar_casos'; ?>">Cerrar Casos</a></li>
-						<li><a href="<?php echo base_url().'crud_historial'; ?>">Historial</a></li>
 
-					</ul>
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle">
+				<i class="fa fa-desktop"></i>
+			    <span class="hidden-xs">Registro</span>
+				</a>
+				<ul class="dropdown-menu">
+					<?php
+                  $usuario1 = $usuario['usuario'];
+                  $sql="SELECT id_usuario FROM usuarios where usuario= '$usuario1';";
+                  $rec=mysql_query($sql);
+                   while ($row=mysql_fetch_array($rec))
+                   {   
+                  $id_usuario = $row['id_usuario'];     
+                   }          
+        //creamos una variable usuarios para pasarle a la vista
+                   
+                  $menu =   $this->model_menu->menu_registro($id_usuario);
+                  foreach ($menu as $menu):?>
+                <li><a href="<?php echo base_url().$menu->url; ?>"><i class="fa fa-edit fa-fw"></i> <?= $menu->opcion?> </a></li>
+                 <?php endforeach ;?>
+				</ul>
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle">
 						<i class="fa fa-list"></i>
-						 <span class="hidden-xs">Categorizar</span>
+						 <span class="hidden-xs">Reportes</span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="" href="crud_categoria">Categorias</a></li>
-						<li><a class="" href="crud_subcategoria">Subcategorias</a></li>
-
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
-						<i class="fa fa-bar-chart-o"></i>
-						 <span class="hidden-xs">Graficos De Casos</span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="" href="charts">Historial e Casos</a></li>
-						
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
-						<i class="fa fa-desktop"></i>
-						 <span class="hidden-xs">Usuarios</span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="ajax-link" href="ajax/ui_grid.html">Register</a></li>
-						<li><a class="ajax-link" href="ajax/ui_buttons.html">Usuarios</a></li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
-						<i class="fa fa-list"></i>
-						 <span class="hidden-xs">Setting</span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="ajax/page_login.html">No se que van a poner aqui</a></li>
+						<?php
+				$menu =   $this->model_menu->menu_reporte($id_usuario);
+                  foreach ($menu as $menu):?>
+                <li><a href="<?php echo base_url().$menu->url; ?>"><i class="fa fa-edit fa-fw"></i> <?= $menu->opcion?> </a></li>
+                 <?php endforeach ;?>
 					
 					</ul>
 				</li>
@@ -167,6 +147,6 @@ if (isset($_SESSION['my_usuario']))
 }
 else
 {
-   redirect( 'acceso', 'refresh' ); 
+   redirect( 'ctl_index', 'refresh' ); 
 }
 ?>

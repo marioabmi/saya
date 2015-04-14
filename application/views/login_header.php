@@ -3,7 +3,7 @@
 	<head>
 	<base href="<?php echo base_url(); ?>">
 		<meta charset="utf-8">
-		<title>DevOOPS</title>
+		<title>SAYA</title>
 		<meta name="description" content="description">
 		<meta name="author" content="Evgeniya">
 		<meta name="keyword" content="keywords">

@@ -9,6 +9,7 @@ class ctl_index extends CI_Controller {
 		$this->load->helper('url');
 			session_start(); 
 		$this->load->model('model_acceso'); 
+		$this->load->model('model_menu'); 
 		$data['home'] = strtolower(__CLASS__).'/';
 		$this->load->vars($data);
 	}
@@ -66,3 +67,5 @@ if ( !isset($_SESSION['my_usuario']) )redirect( 'acceso', 'refresh' );
 	} 
  
 }
+
+
